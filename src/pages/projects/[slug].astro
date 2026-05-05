@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((p) => ({
+    params: { slug: p.id },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+
+const { Content } = await render(project);
+---
+
+<Layout>
+  <main
+    class="parallax h-screen flex flex-col items-center justify-center p-10"
+  >
+    <a
+      href="/projects"
+      class="navbar-link text-xl text-white m-2 font-extrabold">Back</a
+    >
+    <h1 class="text-6xl title font-extrabold text-white mb-10 text-center">
+      {project.data.title}
+    </h1>
+
+    <div
+      class="prose prose-invert max-w-none
+        prose-headings:font-bold
+        prose-headings:mt-4
+        prose-headings:mb-4
+        prose-h1:text-5xl prose-h1:text-white
+        prose-h2:text-4xl prose-h2:text-slate-100
+        prose-h3:text-2xl prose-h3:text-slate-200
+        prose-p:text-slate-300 text-left"
+    >
+      <Content />
+    </div>
+  </main>
+</Layout>

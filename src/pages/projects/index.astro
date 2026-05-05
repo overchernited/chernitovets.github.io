@@ -1,0 +1,96 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+const projects: CollectionEntry<"projects">[] = await getCollection("projects");
+
+import ProjectCard from "../../components/ProjectCard/index.astro";
+import ProjectsLayout from "../../layouts/ProjectsLayout.astro";
+---
+
+<ProjectsLayout>
+  <div>
+    {
+      projects.map((p) => (
+        <ProjectCard
+          img={p.data.icon}
+          title={p.data.title}
+          description={p.data.description}
+          top={p.data.top}
+          left={p.data.left}
+          slug={p.id}
+          tags={p.data.tags}
+        />
+      ))
+    }
+  </div>
+</ProjectsLayout>
+
+<script>
+  import gsap from "gsap";
+  import Draggable from "gsap/Draggable";
+
+  gsap.registerPlugin(Draggable);
+
+  let lastX = 0;
+  let lastY = 0;
+  let vx = 0;
+  let vy = 0;
+
+  Draggable.create(".card", {
+    type: "x,y",
+    onPress: function () {
+      lastX = this.x;
+      lastY = this.y;
+      gsap.killTweensOf(this.target);
+    },
+    onDrag: function () {
+      vx = this.x - lastX;
+      vy = this.y - lastY;
+      lastX = this.x;
+      lastY = this.y;
+    },
+    onDragEnd: function () {
+      const factor = 5;
+
+      gsap.to(this.target, {
+        x: `+=${vx * factor}`,
+        y: `+=${vy * factor}`,
+        duration: 0.8,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+
+      vx = 0;
+      vy = 0;
+    },
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    gsap.fromTo(
+      ".card",
+      { scale: 0 },
+      {
+        scale: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.1,
+        delay: 0.2,
+      },
+    );
+  });
+
+  const cards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
+
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      cards.forEach((c) => {
+        if (c !== card) c.style.opacity = "0.5";
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      cards.forEach((c) => {
+        c.style.opacity = "1";
+      });
+    });
+  });
+</script>

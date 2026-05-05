@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+
+.jetbrains-mono-font {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.navbar-link {
+    @apply hover:underline text-xl hover:text-indigo-300 font-extrabold text-gray-300 transition-colors duration-300;
+}
+
+
+.title {
+    background: linear-gradient(90deg, #3b82f6, #a855f7);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+* {
+    user-select: none;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-width: 100vw;
+    margin: 0;
+    font-family: "JetBrains Mono", monospace;
+
+    background: #0f0925;
+    background: -webkit-linear-gradient(144deg,
+            rgba(15, 9, 37, 1) 0%,
+            rgb(20, 20, 20) 54%,
+            rgba(15, 9, 37, 1) 100%);
+    background: -moz-linear-gradient(144deg,
+            rgba(15, 9, 37, 1) 0%,
+            rgb(20, 20, 20) 54%,
+            rgba(15, 9, 37, 1) 100%);
+    background: linear-gradient(144deg,
+            rgba(15, 9, 37, 1) 0%,
+            rgb(20, 20, 20) 54%,
+            rgba(15, 9, 37, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0F0925", endColorstr="#0F0925", GradientType=0);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px);
+
+    background-size: 30px 30px;
+
+    pointer-events: none;
+    z-index: 0;
+}

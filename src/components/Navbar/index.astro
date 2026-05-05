@@ -1,0 +1,24 @@
+<a href="/" class="fixed navbar-link z-101 m-2">MaHe</a>
+<nav
+  class="bg-indigo-950/0 rounded-full backdrop-blur-2xl z-100 fixed flex justify-center items-center w-full"
+>
+  <div class="flex items-center gap-20 m-2">
+    <a href="/about" class="navbar-link">About</a>
+    <a href="/appearances" class="navbar-link">Appearances</a>
+    <a href="/projects" class="navbar-link">Projects</a>
+    <a href="/technologies" class="navbar-link">Technologies</a>
+  </div>
+</nav>
+
+<script>
+  import gsap from "gsap";
+
+  gsap.from(".navbar-link", {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    stagger: 0.05,
+    ease: "power2.out",
+    transformOrigin: "center",
+  });
+</script>

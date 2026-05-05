@@ -1,0 +1,20 @@
+---
+interface StudiesProp {
+  fromyear: number;
+  toyear: string | number;
+  degree: string;
+  institution: string;
+}
+
+const { fromyear, toyear, degree, institution } = Astro.props as StudiesProp;
+---
+
+<section class="sequence opacity-0 border-b border-indigo-400 w-full">
+  <h2 class="font-black text-3xl">
+    {degree}
+  </h2>
+  <div class="flex gap-5 m-2 ml-5">
+    <p>- {institution}</p>
+    <p class="title">{fromyear} - {toyear}</p>
+  </div>
+</section>

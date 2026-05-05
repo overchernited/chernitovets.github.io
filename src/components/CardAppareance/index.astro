@@ -1,0 +1,25 @@
+---
+interface CardAppareance {
+  img: string;
+  from: string;
+  title: string;
+  description: string;
+  link: string;
+}
+
+const { img, from, title, description, link } = Astro.props as CardAppareance;
+---
+
+<a
+  href={link}
+  class="hover:scale-105 cursor-pointer transition-transform rounded-lg border bg-slate-900 border-slate-700
+  h-[70%] w-[50%] p-2"
+>
+  <div class="flex flex-col justify-center items-center">
+    <img class="w-[70%] rounded-t-lg" src={img} />
+    <h1 class="text-3xl font-bold title">{title}</h1>
+  </div>
+  <h2 class="text-lg font-bold">{from}</h2>
+
+  <p>{description}</p>
+</a>

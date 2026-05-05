@@ -1,0 +1,43 @@
+---
+import Studies from "./Studies.astro";
+---
+
+<section class="flex items-center justify-center text-white">
+  <div class="w-[50%] flex flex-col gap-1">
+    <code class="sequence opacity-0 text-lg"><pre>> About </pre></code>
+    <h2 class="sequence opacity-0 text-5xl font-bold title mb-3">
+      SOFTWARE ENGINEER & FRONTEND DEVELOPER
+    </h2>
+
+    <p class="sequence opacity-0 text-xl my-5">
+      Soy un desarrollador creativo y disciplinado, con habilidad para
+      transformar ideas complejas en soluciones claras y funcionales. Me destaco
+      por mi capacidad de análisis, resolución de problemas y atención al
+      detalle, así como por mi pasión por generar experiencias digitales
+      atractivas e intuitivas. Mi enfoque combina creatividad, curiosidad y
+      perseverancia, siempre buscando aprender y mejorar en cada proyecto que
+      emprendo.
+    </p>
+
+    <aside class="flex flex-col gap-5 mt-5">
+      <div class="sequence opacity-0 font-extrabold text-3xl">
+        <h1 class="title">AGE</h1>
+        <p class="text-xl">18 YEARS OLD</p>
+      </div>
+      <div class="sequence opacity-0 font-extrabold text-3xl">
+        <h1 class="title">LOCATION</h1>
+        <p class="text-xl">Bogotá, Colombia</p>
+      </div>
+    </aside>
+
+    <Studies />
+  </div>
+  <div class="flex flex-col items-center">
+    <img
+      src="/images/self.png"
+      width={500}
+      height={500}
+      alt={"Marlon Pixelart"}
+    />
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechCard from "../components/TechCard/index.astro";
+---
+
+<Layout>
+  <div
+    class="parallax text-white h-screen w-screen flex justify-center content-center flex-wrap gap-x-10 gap-y-8"
+  >
+    <p class="text-3xl">> TECH STACK</p>
+
+    <div class="flex justify-center content-center flex-wrap gap-x-10 gap-y-8">
+      <TechCard techname="Solid.js" rating="4" level="ADVANCED" />
+      <TechCard techname="React.js" rating="3" level="MID" />
+      <TechCard techname="Next.js" rating="3" level="MID" />
+      <TechCard techname="Tailwind" rating="3" level="MID" />
+      <TechCard techname="Supabase" rating="3" level="MID" />
+      <TechCard techname="Godot" rating="2" level="ENTRY" />
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import gsap from "gsap";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    gsap.fromTo(
+      ".card",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.1,
+        delay: 0.2,
+      },
+    );
+  });
+</script>
