@@ -15,18 +15,25 @@ import { Image } from "astro:assets";
 
 <script>
   import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  const tl = gsap.timeline({ delay: 0.2 });
+  gsap.registerPlugin(ScrollTrigger);
 
-  tl.fromTo(
-    ".sequence",
-    { opacity: 0 },
-    {
-      opacity: 1,
-      y: 20,
-      duration: 0.5,
-      stagger: 0.2,
-      ease: "power2.out",
-    },
-  );
+  gsap.utils.toArray<HTMLElement>(".sequence").forEach((el) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+  });
 </script>
