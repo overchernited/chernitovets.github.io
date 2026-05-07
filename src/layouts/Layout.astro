@@ -7,7 +7,7 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,17 +60,30 @@ import "../styles/global.css";
     yoyo: true,
   });
 
-  const parallax = document.querySelector(".parallax");
+  const win = window as unknown as Window & { isDesktop: boolean };
+  const mql = window.matchMedia("(min-width: 768px)");
 
-  window.addEventListener("mousemove", (e) => {
+  function onMouseMove(e: MouseEvent): void {
+    const el = document.querySelector(".parallax");
+    if (!el) return;
     const x = (e.clientX / window.innerWidth - 0.5) * 80;
     const y = (e.clientY / window.innerHeight - 0.5) * 40;
+    gsap.to(el, { x, y, duration: 0.6, ease: "power2.out" });
+  }
 
-    gsap.to(parallax, {
-      x,
-      y,
-      duration: 0.6,
-      ease: "power2.out",
-    });
-  });
+  function setDesktop(isDesktop: boolean): void {
+    win.isDesktop = isDesktop;
+    if (isDesktop) {
+      window.addEventListener("mousemove", onMouseMove);
+    } else {
+      window.removeEventListener("mousemove", onMouseMove);
+    }
+  }
+
+  function onDesktopChange(e: MediaQueryListEvent): void {
+    setDesktop(e.matches);
+  }
+
+  setDesktop(mql.matches);
+  mql.addEventListener("change", onDesktopChange);
 </script>

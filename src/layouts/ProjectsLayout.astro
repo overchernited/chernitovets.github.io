@@ -7,7 +7,7 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,5 +41,12 @@ import "../styles/global.css";
     repeat: -1,
     ease: "none",
     yoyo: true,
+  });
+
+  const win = window as unknown as Window & { isDesktop: boolean };
+  const mql = window.matchMedia("(min-width: 768px)");
+  win.isDesktop = mql.matches;
+  mql.addEventListener("change", (e: MediaQueryListEvent): void => {
+    win.isDesktop = e.matches;
   });
 </script>
