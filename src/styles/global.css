@@ -24,15 +24,24 @@
     user-select: none;
 }
 
-html,
+html {
+    background-color: #0f0925;
+    min-height: 100%;
+}
+
 body {
     overflow-x: hidden;
-    min-height: 100vh;
-    min-width: 100vw;
+    min-height: 100dvh;
     margin: 0;
     font-family: "JetBrains Mono", monospace;
+}
 
-    background: #0f0925;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
     background: -webkit-linear-gradient(144deg,
             rgba(15, 9, 37, 1) 0%,
             rgb(20, 20, 20) 54%,
@@ -45,22 +54,17 @@ body {
             rgba(15, 9, 37, 1) 0%,
             rgb(20, 20, 20) 54%,
             rgba(15, 9, 37, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0F0925", endColorstr="#0F0925", GradientType=0);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    pointer-events: none;
 }
 
-body::before {
+body::after {
     content: "";
     position: fixed;
     inset: 0;
+    z-index: -1;
 
     background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px,
             transparent 1px);
-
     background-size: 30px 30px;
-
     pointer-events: none;
-    z-index: 0;
 }
