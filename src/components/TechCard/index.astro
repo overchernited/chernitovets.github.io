@@ -11,12 +11,14 @@ const { techname, rating, level } = Astro.props as TechCard;
 <div
   class="card opacity-0
   
-  
-  transition-transform text-white h-[10vh] w-[25vw] rounded-2xl border-2 bg-slate-900 backdrop-blur-2xl border-slate-700 items-center flex gap-3"
+  w-full p-2
+  transition-transform text-white h-[10vh] md:w-[25vw] rounded-2xl border-2 bg-slate-900 backdrop-blur-2xl border-slate-700 items-center flex gap-3"
 >
-  <h1 class="rounded-2xl text-3xl p-3 font-extrabold title">{techname}</h1>
+  <h1 class="rounded-2xl font-extrabold title text-[clamp(1.5rem,5vw,2rem)]">
+    {techname}
+  </h1>
 
-  <aside class="font-bold flex gap-3">
+  <aside class="font-bold flex gap-3 text-[clamp(0.2rem,5vw,1rem)]">
     <span>
       {
         Array.from({ length: 5 }).map((_, i) => (
